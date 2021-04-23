@@ -18,7 +18,8 @@ import {
     subPeriod,
     SchedulerDateFormatter,
     SchedulerEventTimesChangedEvent,
-    CalendarSchedulerViewComponent
+    CalendarSchedulerViewComponent,
+    SchedulerHeaderClickedEvent
 } from 'angular-calendar-scheduler';
 import {
     CalendarView,
@@ -27,6 +28,8 @@ import {
 } from 'angular-calendar';
 
 import { AppService } from './services/app.service';
+import { CalendarSchedulerEventClickedEvent } from '../../lib/modules/scheduler/models/calendar-scheduler-event-clicked-event';
+import { SchedulerHourSegmentClickedEvent } from '../../lib/modules/scheduler/models/scheduler-hour-segment-clicked-event';
 
 @Component({
     selector: 'app-root',
@@ -156,7 +159,7 @@ export class AppComponent implements OnInit {
         this.viewDays = viewDays;
     }
 
-    dayHeaderClicked(day: SchedulerViewDay): void {
+    dayHeaderClicked(day: SchedulerHeaderClickedEvent): void {
         console.log('dayHeaderClicked Day', day);
     }
 
@@ -164,12 +167,12 @@ export class AppComponent implements OnInit {
         console.log('hourClicked Hour', hour);
     }
 
-    segmentClicked(action: string, segment: SchedulerViewHourSegment): void {
+    segmentClicked(action: string, segment: SchedulerHourSegmentClickedEvent): void {
         console.log('segmentClicked Action', action);
         console.log('segmentClicked Segment', segment);
     }
 
-    eventClicked(action: string, event: CalendarSchedulerEvent): void {
+    eventClicked(action: string, event: CalendarSchedulerEventClickedEvent): void {
         console.log('eventClicked Action', action);
         console.log('eventClicked Event', event);
     }

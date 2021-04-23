@@ -2,7 +2,8 @@
 import {
     SchedulerViewDay,
     SchedulerViewHourSegment,
-    CalendarSchedulerEvent
+    CalendarSchedulerEvent,
+    SchedulerHourSegmentClickedEvent
 } from './models';
 
 // WORKAROUND: https://github.com/dherges/ng-packagr/issues/217#issuecomment-339460255
@@ -56,7 +57,7 @@ export class CalendarSchedulerHourSegmentComponent implements OnInit {
 
     @Input() showHour: boolean = false;
 
-    @Output() segmentClicked: EventEmitter<{ segment: SchedulerViewHourSegment }> = new EventEmitter<{ segment: SchedulerViewHourSegment }>();
+    @Output() segmentClicked: EventEmitter<SchedulerHourSegmentClickedEvent> = new EventEmitter<SchedulerHourSegmentClickedEvent>();
 
     ngOnInit(): void {
         this.title = this.title || moment(this.segment.date).format('dddd L, LT');
@@ -89,7 +90,7 @@ export class CalendarSchedulerHourSegmentComponent implements OnInit {
         }
 
         if (segment.events.length === 0 && !segment.isDisabled && !segment.isCancelled) {
-            this.segmentClicked.emit({ segment: segment });
+            this.segmentClicked.emit({ segment: segment, browserEvent: mouseEvent });
         }
     }
 }

@@ -35,7 +35,10 @@ import {
     SchedulerViewHourSegment,
     SchedulerEventTimesChangedEvent,
     SchedulerViewEvent,
-    SchedulerView
+    SchedulerView,
+    CalendarSchedulerEventClickedEvent,
+    SchedulerHourSegmentClickedEvent,
+    SchedulerHeaderClickedEvent
 } from './models';
 import {
     shouldFireDroppedEvent,
@@ -366,7 +369,7 @@ export class CalendarSchedulerViewComponent implements OnInit, OnChanges, OnDest
     /**
      * Called when a header week day is clicked
      */
-    @Output() dayHeaderClicked: EventEmitter<{ day: SchedulerViewDay }> = new EventEmitter<{ day: SchedulerViewDay }>();
+    @Output() dayHeaderClicked: EventEmitter<SchedulerHeaderClickedEvent> = new EventEmitter<SchedulerHeaderClickedEvent>();
 
     /**
      * Called when the hour is clicked
@@ -376,12 +379,12 @@ export class CalendarSchedulerViewComponent implements OnInit, OnChanges, OnDest
     /**
      * Called when the segment is clicked
      */
-    @Output() segmentClicked: EventEmitter<{ segment: SchedulerViewHourSegment }> = new EventEmitter<{ segment: SchedulerViewHourSegment }>();
+    @Output() segmentClicked: EventEmitter<SchedulerHourSegmentClickedEvent> = new EventEmitter<SchedulerHourSegmentClickedEvent>();
 
     /**
      * Called when the event is clicked
      */
-    @Output() eventClicked: EventEmitter<{ event: CalendarSchedulerEvent }> = new EventEmitter<{ event: CalendarSchedulerEvent }>();
+    @Output() eventClicked: EventEmitter<CalendarSchedulerEventClickedEvent> = new EventEmitter<CalendarSchedulerEventClickedEvent>();
 
     /**
      * Called when an event is resized or dragged and dropped

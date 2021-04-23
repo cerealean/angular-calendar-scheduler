@@ -5,3 +5,6 @@ export * from './scheduler-view-event.model';
 export * from './scheduler-view-hour-model';
 export * from './scheduler-view-hour-segment.model';
 export * from './scheduler-view.model';
+export * from './calendar-scheduler-event-clicked-event';
+export * from './scheduler-header-clicked-event';
+export * from './scheduler-hour-segment-clicked-event';

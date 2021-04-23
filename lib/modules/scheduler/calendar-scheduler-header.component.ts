@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
-import { SchedulerViewDay } from './models';
+import { SchedulerViewDay, SchedulerHeaderClickedEvent } from './models';
 
 @Component({
     selector: 'calendar-scheduler-header',
@@ -43,7 +43,7 @@ export class CalendarSchedulerHeaderComponent {
 
     @Input() customTemplate: TemplateRef<any>;
 
-    @Output() dayHeaderClicked: EventEmitter<{ day: SchedulerViewDay }> = new EventEmitter<{ day: SchedulerViewDay }>();
+    @Output() dayHeaderClicked: EventEmitter<SchedulerHeaderClickedEvent> = new EventEmitter<SchedulerHeaderClickedEvent>();
 
     /**
      * @hidden
@@ -53,6 +53,6 @@ export class CalendarSchedulerHeaderComponent {
             mouseEvent.stopPropagation();
         }
 
-        this.dayHeaderClicked.emit({ day: day });
+        this.dayHeaderClicked.emit({ day: day, browserEvent: mouseEvent });
     }
 }

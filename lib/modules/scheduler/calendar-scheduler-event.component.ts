@@ -7,6 +7,7 @@ import {
 
 // WORKAROUND: https://github.com/dherges/ng-packagr/issues/217#issuecomment-339460255
 import * as momentImported from 'moment';
+import { CalendarSchedulerEventClickedEvent } from './models/calendar-scheduler-event-clicked-event';
 const moment = momentImported;
 
 @Component({
@@ -84,7 +85,7 @@ export class CalendarSchedulerEventComponent implements OnInit, AfterContentChec
 
     @Input() eventTitleTemplate: TemplateRef<any>;
 
-    @Output() eventClicked: EventEmitter<{ event: CalendarSchedulerEvent }> = new EventEmitter<{ event: CalendarSchedulerEvent }>();
+    @Output() eventClicked: EventEmitter<CalendarSchedulerEventClickedEvent> = new EventEmitter<CalendarSchedulerEventClickedEvent>();
 
     constructor(private hostElement: ElementRef, protected changeDetectorRef: ChangeDetectorRef) {   }
 
@@ -112,7 +113,7 @@ export class CalendarSchedulerEventComponent implements OnInit, AfterContentChec
             mouseEvent.stopPropagation();
         }
         if (event.isClickable) {
-            this.eventClicked.emit({ event: event });
+            this.eventClicked.emit({ event: event, browserEvent: mouseEvent });
         }
     }
 }
